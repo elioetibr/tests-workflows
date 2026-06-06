@@ -16,7 +16,15 @@ jobs:
       
     steps:
     - name: Trust Workspace Directory
-      run: git config --global --add safe.directory "${{ github.workspace }}"
+      shell: bash -l {0}
+      run: |
+        #!/usr/bin/env bash
+
+        set -eou pipefail
+        
+        echo "${RUNNER_TEMP}"
+        
+        git config --global --add safe.directory "${{ github.workspace }}"
   
     - name: Checkout
       uses: actions/checkout@v6
