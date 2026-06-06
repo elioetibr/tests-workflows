@@ -24,6 +24,8 @@ jobs:
         
         git config --global --add safe.directory "${{ runner.temp }}"
         git config --global --add safe.directory "${{ github.workspace }}"
+
+        echo "$(whoami)"
   
     - name: Checkout
       uses: actions/checkout@v6
