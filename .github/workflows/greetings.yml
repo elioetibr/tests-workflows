@@ -9,12 +9,19 @@ on:
 jobs:
   greeting:
     runs-on: imac
+    
     permissions:
       issues: write
       pull-requests: write
+      
     steps:
+    - name: Trust Workspace Directory
+      run: git config --global --add safe.directory "${{ github.workspace }}"
+  
     - name: Checkout
       uses: actions/checkout@v6
+      with:
+        chown: false
 
     - name: Run Command
       shell: bash -l {0}
