@@ -22,8 +22,7 @@ jobs:
 
         set -eou pipefail
         
-        echo "${RUNNER_TEMP}"
-        
+        git config --global --add safe.directory "${{ runner.temp }}"
         git config --global --add safe.directory "${{ github.workspace }}"
   
     - name: Checkout
@@ -40,9 +39,9 @@ jobs:
 
         echo "${REPO_INFO}"
 
-    - uses: actions/first-interaction@v1
-      if: github.event_name == 'pull_request'
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Message that will be displayed on users' first issue"
-        pr-message: "Message that will be displayed on users' first pull request"
+    # - uses: actions/first-interaction@v1
+    #   if: github.event_name == 'pull_request'
+    #   with:
+    #     repo-token: ${{ secrets.GITHUB_TOKEN }}
+    #     issue-message: "Message that will be displayed on users' first issue"
+    #     pr-message: "Message that will be displayed on users' first pull request"
